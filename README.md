@@ -1,8 +1,8 @@
-# PearlEcho — The Living Memory of Africa
+# PearlEcho — The Living Memory of Uganda
 
 > *So the stories don't disappear.*
 
-**PearlEcho** is an AI-powered living archive for African oral culture. It
+**PearlEcho** is an AI-powered living archive for Ugandan oral culture. It
 preserves original recordings of stories, songs, riddles and proverbs — never altering the
 source — and makes them responsibly discoverable and transmissible across generations.
 
