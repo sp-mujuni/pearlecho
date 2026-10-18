@@ -1,15 +1,15 @@
-# Mizizi — The Living Memory of Africa
+# PearlEcho — The Living Memory of Africa
 
 > *So the stories don't disappear.*
 
-**Mizizi** (Swahili for **roots**) is an AI-powered living archive for African oral culture. It
+**PearlEcho** is an AI-powered living archive for African oral culture. It
 preserves original recordings of stories, songs, riddles and proverbs — never altering the
 source — and makes them responsibly discoverable and transmissible across generations.
 
-> **Mizizi Archive** remembers. **Mizizi AI** interprets. **The community** decides.
+> **PearlEcho Archive** remembers. **PearlEcho AI** interprets. **The community** decides.
 
-This repository contains **Mizizi v0** (Alpha), the foundational implementation of the
-Mizizi Cultural Object: the atomic, provenance-aware, rights-aware, multimodal digital
+This repository contains **PearlEcho v0** (Alpha), the foundational implementation of the
+PearlEcho Cultural Object: the atomic, provenance-aware, rights-aware, multimodal digital
 representation of one piece of cultural memory.
 
 ## Core principles
@@ -33,7 +33,7 @@ representation of one piece of cultural memory.
 ## Repository layout
 
 ```
-mizizi/
+pearlecho/
 ├── backend/            # FastAPI + SQLAlchemy + Alembic + PostgreSQL
 │   └── app/
 │       ├── core/       # config, database, storage, enums
@@ -177,7 +177,7 @@ Every cultural object carries a stable, human-readable identity, e.g.
 
 ```
 MZ-UG-LGD-STORY-00000001
-Mizizi · Uganda · Luganda · Story · #1
+PearlEcho · Uganda · Luganda · Story · #1
 ```
 
 - `UUID` primary key (database), `object_code` (humans, researchers, citations)
@@ -214,7 +214,7 @@ Interactive docs: `http://localhost:8000/docs`.
   media upload + checksum, transcription + review, translation, permissions/consents, search.
 - **Alpha 0.2**: pgvector semantic search, cultural relationships (knowledge graph).
 - **Alpha 0.3**: permission-aware AI adaptation and cultural retrieval service.
-- **Beta**: cultural map, collections, institutional access, Mizizi API.
+- **Beta**: cultural map, collections, institutional access, PearlEcho API.
 
 ## License
 
