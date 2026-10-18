@@ -74,7 +74,7 @@ export default function Recorder({ onRecorded }: RecorderProps) {
         streamRef.current = null;
         const { ext } = pickMime();
         const blob = new Blob(chunksRef.current, { type: rec.mimeType || "audio/webm" });
-        const file = new File([blob], `mizizi-recording-${Date.now()}.${ext}`, {
+        const file = new File([blob], `pearlecho-recording-${Date.now()}.${ext}`, {
           type: rec.mimeType || "audio/webm",
         });
         const url = URL.createObjectURL(blob);

@@ -133,7 +133,7 @@ export default function ArchivePage() {
           )}
         </>
       ) : (
-        <p className="text-stone-500">Unable to reach the Mizizi API.</p>
+        <p className="text-stone-500">Unable to reach the PearlEcho API.</p>
       )}
     </div>
   );

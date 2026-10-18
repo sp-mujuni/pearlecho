@@ -33,7 +33,7 @@ export default function LoginPage() {
     <div className="mx-auto max-w-md px-4 py-16">
       <h1 className="text-center font-serif text-3xl font-bold text-brand-dark">Sign in</h1>
       <p className="mt-2 text-center text-sm text-stone-500">
-        Welcome back to Mizizi. Sign in to record, review and manage your contributions.
+        Welcome back to PearlEcho. Sign in to record, review and manage your contributions.
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 space-y-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
@@ -76,7 +76,7 @@ export default function LoginPage() {
       </form>
 
       <p className="mt-6 text-center text-sm text-stone-500">
-        New to Mizizi?{" "}
+        New to PearlEcho?{" "}
         <Link href="/register" className="font-semibold text-brand-dark underline">
           Join the archive
         </Link>

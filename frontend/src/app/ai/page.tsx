@@ -62,9 +62,9 @@ export default function AiPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <header className="mb-8">
-        <h1 className="font-serif text-3xl font-bold text-brand-dark sm:text-4xl">Ask Mizizi</h1>
+        <h1 className="font-serif text-3xl font-bold text-brand-dark sm:text-4xl">Ask PearlEcho</h1>
         <p className="mt-2 max-w-2xl text-stone-600">
-          Permission-aware AI. Mizizi never touches a story without consent: it can only adapt a
+          Permission-aware AI. PearlEcho never touches a story without consent: it can only adapt a
           Cultural Object if the community granted{" "}
           <span className="font-semibold">AI analysis</span> and{" "}
           <span className="font-semibold">derivative work</span>. Everything AI produces is
@@ -141,7 +141,7 @@ export default function AiPage() {
               {aiAllowed ? (
                 <form onSubmit={generateDerivative} className="space-y-4">
                   <p className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-                    This community granted AI analysis and derivative work. Mizizi may adapt this
+                    This community granted AI analysis and derivative work. PearlEcho may adapt this
                     story — the output will be recorded as a derivative and require human review.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -186,7 +186,7 @@ export default function AiPage() {
                   <p className="text-3xl">🔒</p>
                   <p className="mt-3 font-semibold text-stone-700">AI use was not granted for this story</p>
                   <p className="mx-auto mt-1 max-w-md text-sm text-stone-500">
-                    The community has not consented to AI analysis or derivative work. Mizizi
+                    The community has not consented to AI analysis or derivative work. PearlEcho
                     respects that boundary — this object is protected from adaptation.
                   </p>
                 </div>

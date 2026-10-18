@@ -61,44 +61,76 @@ mizizi/
 | Migrations | Alembic                                                           |
 | Infra      | Docker Compose (Postgres + MinIO)                                 |
 
-## Quick start
+## Implementation guidelines
 
-### 1. Infrastructure
+Everything needed to run the full stack locally, verify it, and test it.
+
+### Prerequisites
+
+| Tool       | Version           | Used for                              |
+|------------|-------------------|---------------------------------------|
+| Python     | 3.13              | Backend (FastAPI)                     |
+| Node.js    | 20+               | Frontend (Next.js)                    |
+| PostgreSQL | 17                | Database                              |
+| Docker     | recent (optional) | Postgres + MinIO via `docker compose` |
+
+### 1. Infrastructure (database and object storage)
+
+With Docker — starts PostgreSQL 17 and MinIO:
 
 ```bash
-docker compose up -d          # starts PostgreSQL 17 + MinIO
+docker compose up -d
 ```
 
-> No Docker? Use a locally installed PostgreSQL and set `DATABASE_URL` accordingly.
-> The storage layer automatically falls back to a local `data/` directory when
-> `STORAGE_BACKEND=local` (default for development).
+Without Docker — use a locally installed PostgreSQL 17 and create the role and database once:
+
+```sql
+CREATE ROLE mizizi LOGIN PASSWORD 'mizizi';
+CREATE DATABASE mizizi OWNER mizizi;
+```
+
+Keep `DATABASE_URL` in `backend/.env` consistent with however Postgres runs (default
+`postgresql+psycopg://mizizi:mizizi@localhost:5432/mizizi`). Object storage defaults to
+`STORAGE_BACKEND=local` (files under `backend/data/`) and needs no extra service for
+development; MinIO/S3 is optional.
 
 ### 2. Backend
 
 ```bash
 cd backend
 python -m venv .venv
-.venv\Scripts\activate          # Windows
+.venv\Scripts\activate          # Windows  (source .venv/bin/activate on macOS/Linux)
 pip install -r requirements.txt
-copy .env.example .env          # Windows  (cp .env.example .env on Unix)
-alembic upgrade head
+copy .env.example .env          # Windows  (cp .env.example .env on macOS/Linux)
+alembic upgrade head            # create/update the schema
+python -m app.seed.seed         # seed reference data + demo content (idempotent)
 uvicorn app.main:app --reload   # http://localhost:8000  (docs at /docs)
 ```
 
-Seed the archive with Ugandan languages, communities, places and sample objects:
+Verify the API is up: `http://localhost:8000/health` returns `{"status": "ok"}`.
 
-```bash
-python -m app.seed.seed
-```
+Seeded development accounts (replace before any real deployment):
+
+| Email                | Password           | Role     |
+|----------------------|--------------------|----------|
+| `admin@mizizi.app`   | `MiziziAdmin!2026` | admin    |
+| `mukasa@mizizi.app`  | `Mukasa!2026`      | reviewer |
+| `nalongo@mizizi.app` | `Nalongo!2026`     | member   |
+| `owor@mizizi.app`    | `Owor!2026`        | member   |
 
 ### 3. Frontend
 
 ```bash
 cd frontend
 npm install
-cp .env.example .env.local   # optional: set NEXT_PUBLIC_API_BASE_URL
-npm run dev                  # http://localhost:3000
+copy .env.example .env.local    # Windows  (cp .env.example .env.local on macOS/Linux)
+npm run dev                     # http://localhost:3000
 ```
+
+`NEXT_PUBLIC_API_BASE_URL` (default `http://localhost:8000/api/v1`) must match the
+backend port — if you run uvicorn on another port (e.g. `--port 8001`), update
+`.env.local` and restart `npm run dev`. The backend allows `http://localhost:3000`
+via `CORS_ORIGINS` in `backend/.env`.
 
 Screens (per the concept-notes blueprint):
 
@@ -109,9 +141,35 @@ Screens (per the concept-notes blueprint):
 | `/record`        | Contribute: create object, upload, transcribe, translate |
 | `/object/[id]`   | Cultural Object: original media, transcript, translation, provenance timeline, permissions |
 | `/review`        | Human-in-the-loop transcription/translation review   |
-| `/ai`            | Permission-aware AI adaptation ("Ask Mizizi")        |
+| `/ai`            | Permission-aware AI adaptation ("Ask PearlEcho")     |
 
-Set `NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1` (the default) to point at the backend.
+### 4. Tests and checks
+
+Backend — pytest runs against a dedicated `mizizi_test` database (created automatically
+when the Postgres superuser is reachable; override with `TEST_DATABASE_URL`, and
+`PG_SUPERUSER` / `PG_SUPERPASSWORD` if the defaults don't match your Postgres):
+
+```bash
+cd backend
+.venv\Scripts\python -m pytest      # Windows  (python -m pytest on macOS/Linux)
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+```
+
+### 5. Troubleshooting
+
+| Symptom                                        | Fix                                                                             |
+|------------------------------------------------|---------------------------------------------------------------------------------|
+| "Unable to reach the ... API" in the UI        | Start the backend and make sure `NEXT_PUBLIC_API_BASE_URL` matches its port     |
+| Database connection error on backend startup   | Start PostgreSQL (`docker compose up -d` or the local service); check `DATABASE_URL` in `backend/.env` |
+| `alembic upgrade head` fails                   | The database/role must exist (step 1); run migrations from `backend/`           |
+| 403 when changing an object's permissions      | Requests need the object's `X-Creator-Key` header (returned once at creation; recoverable via the administrator) |
 
 ## Cultural Object model
 

@@ -137,7 +137,7 @@ export default function RecordPage() {
             href="/register"
             className="rounded-lg bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-dark"
           >
-            Join Mizizi
+            Join PearlEcho
           </Link>
           <Link
             href="/login"
@@ -169,7 +169,7 @@ export default function RecordPage() {
             </p>
             <p className="mt-2 text-xs text-amber-800">
               Only the holder of this key can grant public access to this story. A copy is
-              stored safely with the Mizizi Administrator — if you lose this key, you can
+              stored safely with the PearlEcho Administrator — if you lose this key, you can
               request it and it will be emailed back to your registered address.
             </p>
           </div>

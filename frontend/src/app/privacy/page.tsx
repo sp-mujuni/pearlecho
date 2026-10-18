@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Mizizi",
-  description: "How Mizizi collects, stores and protects your data and the cultural material in the archive.",
+  title: "Privacy Policy — PearlEcho",
+  description: "How PearlEcho collects, stores and protects your data and the cultural material in the archive.",
 };
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       </p>
       <h1 className="mt-2 font-serif text-4xl font-bold text-brand-dark">Privacy Policy</h1>
       <p className="mt-2 text-sm text-stone-500">
-        Last updated: August 2026. Mizizi (“we”, “our”) protects the privacy of everyone who
+        Last updated: August 2026. PearlEcho (“we”, “our”) protects the privacy of everyone who
         uses the archive — contributors, reviewers and visitors.
       </p>
 
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           <p>
             When you create a Cultural Object, a creator key is generated. The key is the
             credential that grants public access. A copy of the key is escrowed with the
-            Mizizi Administrator so it can be recovered if you lose it. If you request your
+            PearlEcho Administrator so it can be recovered if you lose it. If you request your
             key, it is emailed to the address registered on your account. Only the
             Administrator can access the escrow ledger.
           </p>
@@ -74,9 +74,9 @@ export default function PrivacyPage() {
             <li><strong>Withdrawal of consent:</strong> revoke public access or other permissions at any time from your account.</li>
           </ul>
           <p className="mt-3">
-            To exercise any right, contact the Mizizi Administrator at{" "}
-            <a href="mailto:admin@mizizi.org" className="font-medium text-accent hover:underline">
-              admin@mizizi.org
+            To exercise any right, contact the PearlEcho Administrator at{" "}
+            <a href="mailto:admin@pearlecho.org" className="font-medium text-accent hover:underline">
+              admin@pearlecho.org
             </a>
             .
           </p>
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
 
         <Section title="8. Children">
           <p>
-            Mizizi is intended for users aged 18 and over. We do not knowingly collect
+            PearlEcho is intended for users aged 18 and over. We do not knowingly collect
             personal information from children. If you believe a child has provided us with
             personal information, please contact us and we will take steps to remove it.
           </p>
@@ -108,9 +108,9 @@ export default function PrivacyPage() {
 
         <Section title="10. Contact">
           <p>
-            Questions about this policy? Contact the Mizizi Administrator at{" "}
-            <a href="mailto:admin@mizizi.org" className="font-medium text-accent hover:underline">
-              admin@mizizi.org
+            Questions about this policy? Contact the PearlEcho Administrator at{" "}
+            <a href="mailto:admin@pearlecho.org" className="font-medium text-accent hover:underline">
+              admin@pearlecho.org
             </a>
             . Our{" "}
             <Link href="/terms" className="font-medium text-accent hover:underline">

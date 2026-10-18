@@ -16,7 +16,7 @@ export default function Navbar() {
     { href: "/archive", label: "Archive" },
     { href: "/record", label: "Record" },
     { href: "/review", label: "Review" },
-    { href: "/ai", label: "Ask Mizizi" },
+    { href: "/ai", label: "Ask PearlEcho" },
     ...(isAdmin ? [{ href: "/admin", label: "Admin" }] : []),
   ];
 
@@ -39,10 +39,10 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2" onClick={close}>
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand font-serif text-lg font-bold text-white">
-            M
+            P
           </span>
           <span className="text-lg font-bold tracking-tight text-brand-dark">
-            Mizizi
+            PearlEcho
             <span className="ml-1 hidden text-xs font-normal text-stone-500 sm:inline">
               The Living Memory of Uganda
             </span>
@@ -174,7 +174,7 @@ export default function Navbar() {
                     onClick={close}
                     className="flex-1 rounded-lg bg-brand px-3 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-brand-dark"
                   >
-                    Join Mizizi
+                    Join PearlEcho
                   </Link>
                 </>
               )}

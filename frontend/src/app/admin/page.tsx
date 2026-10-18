@@ -180,7 +180,7 @@ export default function AdminPage() {
     return (
       <div className="mx-auto max-w-xl px-4 py-24 text-center">
         <h1 className="font-serif text-3xl font-bold text-brand-dark">Admin console</h1>
-        <p className="mt-3 text-stone-600">Sign in to access the Mizizi administration console.</p>
+        <p className="mt-3 text-stone-600">Sign in to access the PearlEcho administration console.</p>
         <Link
           href="/login"
           className="mt-6 inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-dark"
@@ -196,7 +196,7 @@ export default function AdminPage() {
       <div className="mx-auto max-w-xl px-4 py-24 text-center">
         <h1 className="font-serif text-3xl font-bold text-brand-dark">Admin only</h1>
         <p className="mt-3 text-stone-600">
-          This console is reserved for the Mizizi Administrator. You do not have access.
+          This console is reserved for the PearlEcho Administrator. You do not have access.
         </p>
         <Link
           href="/"
@@ -321,7 +321,7 @@ export default function AdminPage() {
       {tab === "keys" && (
         <section>
           <p className="mb-4 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
-            The escrow ledger — a copy of every creator key, held by the Mizizi Administrator so
+            The escrow ledger — a copy of every creator key, held by the PearlEcho Administrator so
             contributors can recover lost keys. Only administrators can see these.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-stone-200 bg-white shadow-sm">

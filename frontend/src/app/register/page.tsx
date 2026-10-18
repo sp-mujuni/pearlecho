@@ -85,7 +85,7 @@ export default function RegisterPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16">
-      <h1 className="text-center font-serif text-3xl font-bold text-brand-dark">Join Mizizi</h1>
+      <h1 className="text-center font-serif text-3xl font-bold text-brand-dark">Join PearlEcho</h1>
       <p className="mt-2 text-center text-sm text-stone-500">
         Create an account to record, review and manage cultural material. Membership keeps the
         archive accountable to the communities behind it.

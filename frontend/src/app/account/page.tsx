@@ -108,7 +108,7 @@ export default function AccountPage() {
             href="/register"
             className="rounded-lg border border-brand/30 bg-white px-6 py-3 font-semibold text-brand-dark hover:bg-brand/10"
           >
-            Join Mizizi
+            Join PearlEcho
           </Link>
         </div>
       </div>
@@ -419,7 +419,7 @@ function ObjectCard({
       const req = await api.requestCreatorKey(obj.id);
       setKeyReq(req.status);
       onNotice(
-        "Your key request has been sent to the Mizizi Administrator. The key will be emailed to your registered address."
+        "Your key request has been sent to the PearlEcho Administrator. The key will be emailed to your registered address."
       );
     } catch (err) {
       onError(err instanceof Error ? err.message : "Could not request the creator key.");
@@ -636,7 +636,7 @@ function ObjectCard({
                 </button>
               </div>
               <p className="text-xs text-stone-500">
-                Lost your key? It is stored safely with the Mizizi Administrator.
+                Lost your key? It is stored safely with the PearlEcho Administrator.
               </p>
               {keyReq ? (
                 <p className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
