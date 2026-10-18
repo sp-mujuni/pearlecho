@@ -1,6 +1,6 @@
 # PearlEcho — The Living Memory of Uganda
 
-> *So the stories don't disappear.*
+> _So the stories don't disappear._
 
 **PearlEcho** is an AI-powered living archive for Ugandan oral culture. It
 preserves original recordings of stories, songs, riddles and proverbs — never altering the
@@ -16,8 +16,7 @@ representation of one piece of cultural memory.
 
 1. **The original recording is never altered.** Everything the AI produces is a derivative
    layer on top of an immutable source.
-2. **Cultural consent is a first-class system.** Permissions, consents and access levels are
-   enforced in code, not policy documents.
+2. **Cultural consent is a first-class system.** Permissions and consents are recorded and checked in code. This is an alpha: enforcement has not been evaluated, and permission changes are currently controlled by a per-object creator key, not by community or custodian governance.
 3. **Provenance is immutable.** Every significant event in an object's life is recorded.
 4. **The archive outlives any AI model.** The schema is designed so vector search, knowledge
    graphs and AI pipelines can be added later without rebuilding the core.
@@ -52,14 +51,14 @@ pearlecho/
 
 ## Tech stack
 
-| Layer      | Choice                                                            |
-|------------|-------------------------------------------------------------------|
-| Frontend   | Next.js 16 (App Router), React 19, Tailwind CSS 4              |
-| Backend    | FastAPI, Python 3.13, SQLAlchemy 2, Pydantic v2                   |
-| Database   | PostgreSQL 17 (+ `pgvector` optional for semantic search)         |
-| Storage    | S3-compatible object storage (MinIO locally; boto3 in prod)       |
-| Migrations | Alembic                                                           |
-| Infra      | Docker Compose (Postgres + MinIO)                                 |
+| Layer      | Choice                                                      |
+| ---------- | ----------------------------------------------------------- |
+| Frontend   | Next.js 16 (App Router), React 19, Tailwind CSS 4           |
+| Backend    | FastAPI, Python 3.13, SQLAlchemy 2, Pydantic v2             |
+| Database   | PostgreSQL 17 (+ `pgvector` optional for semantic search)   |
+| Storage    | S3-compatible object storage (MinIO locally; boto3 in prod) |
+| Migrations | Alembic                                                     |
+| Infra      | Docker Compose (Postgres + MinIO)                           |
 
 ## Implementation guidelines
 
@@ -68,7 +67,7 @@ Everything needed to run the full stack locally, verify it, and test it.
 ### Prerequisites
 
 | Tool       | Version           | Used for                              |
-|------------|-------------------|---------------------------------------|
+| ---------- | ----------------- | ------------------------------------- |
 | Python     | 3.13              | Backend (FastAPI)                     |
 | Node.js    | 20+               | Frontend (Next.js)                    |
 | PostgreSQL | 17                | Database                              |
@@ -112,7 +111,7 @@ Verify the API is up: `http://localhost:8000/health` returns `{"status": "ok"}`.
 Seeded development accounts (replace before any real deployment):
 
 | Email                | Password           | Role     |
-|----------------------|--------------------|----------|
+| -------------------- | ------------------ | -------- |
 | `admin@mizizi.app`   | `MiziziAdmin!2026` | admin    |
 | `mukasa@mizizi.app`  | `Mukasa!2026`      | reviewer |
 | `nalongo@mizizi.app` | `Nalongo!2026`     | member   |
@@ -134,14 +133,14 @@ via `CORS_ORIGINS` in `backend/.env`.
 
 Screens (per the concept-notes blueprint):
 
-| Route            | Purpose                                              |
-|------------------|------------------------------------------------------|
-| `/`              | Home — "What did your grandmother tell you?"         |
-| `/archive`       | Browse & filter the archive, full-text search        |
-| `/record`        | Contribute: create object, upload, transcribe, translate |
-| `/object/[id]`   | Cultural Object: original media, transcript, translation, provenance timeline, permissions |
-| `/review`        | Human-in-the-loop transcription/translation review   |
-| `/ai`            | Permission-aware AI adaptation ("Ask PearlEcho")     |
+| Route          | Purpose                                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------ |
+| `/`            | Home — "What did your grandmother tell you?"                                               |
+| `/archive`     | Browse & filter the archive, full-text search                                              |
+| `/record`      | Contribute: create object, upload, transcribe, translate                                   |
+| `/object/[id]` | Cultural Object: original media, transcript, translation, provenance timeline, permissions |
+| `/review`      | Human-in-the-loop transcription/translation review                                         |
+| `/ai`          | Permission-aware AI adaptation ("Ask PearlEcho")                                           |
 
 ### 4. Tests and checks
 
@@ -164,12 +163,12 @@ npm run build
 
 ### 5. Troubleshooting
 
-| Symptom                                        | Fix                                                                             |
-|------------------------------------------------|---------------------------------------------------------------------------------|
-| "Unable to reach the ... API" in the UI        | Start the backend and make sure `NEXT_PUBLIC_API_BASE_URL` matches its port     |
-| Database connection error on backend startup   | Start PostgreSQL (`docker compose up -d` or the local service); check `DATABASE_URL` in `backend/.env` |
-| `alembic upgrade head` fails                   | The database/role must exist (step 1); run migrations from `backend/`           |
-| 403 when changing an object's permissions      | Requests need the object's `X-Creator-Key` header (returned once at creation; recoverable via the administrator) |
+| Symptom                                      | Fix                                                                                                              |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| "Unable to reach the ... API" in the UI      | Start the backend and make sure `NEXT_PUBLIC_API_BASE_URL` matches its port                                      |
+| Database connection error on backend startup | Start PostgreSQL (`docker compose up -d` or the local service); check `DATABASE_URL` in `backend/.env`           |
+| `alembic upgrade head` fails                 | The database/role must exist (step 1); run migrations from `backend/`                                            |
+| 403 when changing an object's permissions    | Requests need the object's `X-Creator-Key` header (returned once at creation; recoverable via the administrator) |
 
 ## Cultural Object model
 
@@ -196,15 +195,15 @@ PearlEcho · Uganda · Luganda · Story · #1
 
 ## API (excerpt)
 
-| Method | Endpoint                                    | Purpose                       |
-|--------|---------------------------------------------|-------------------------------|
-| POST   | `/api/v1/cultural-objects`                  | Create a Cultural Object      |
-| GET    | `/api/v1/cultural-objects/{id}`             | Fetch one (full representation)|
-| POST   | `/api/v1/cultural-objects/{id}/media`       | Upload original recording     |
-| POST   | `/api/v1/cultural-objects/{id}/transcriptions` | Generate/attach transcript |
-| POST   | `/api/v1/cultural-objects/{id}/translations`   | Generate/attach translation |
-| GET    | `/api/v1/search?q=...`                      | Full-text + (optional) vector search |
-| POST   | `/api/v1/cultural-objects/{id}/derivatives` | Permission-aware AI adaptation |
+| Method | Endpoint                                       | Purpose                              |
+| ------ | ---------------------------------------------- | ------------------------------------ |
+| POST   | `/api/v1/cultural-objects`                     | Create a Cultural Object             |
+| GET    | `/api/v1/cultural-objects/{id}`                | Fetch one (full representation)      |
+| POST   | `/api/v1/cultural-objects/{id}/media`          | Upload original recording            |
+| POST   | `/api/v1/cultural-objects/{id}/transcriptions` | Generate/attach transcript           |
+| POST   | `/api/v1/cultural-objects/{id}/translations`   | Generate/attach translation          |
+| GET    | `/api/v1/search?q=...`                         | Full-text + (optional) vector search |
+| POST   | `/api/v1/cultural-objects/{id}/derivatives`    | Permission-aware AI adaptation       |
 
 Interactive docs: `http://localhost:8000/docs`.
 
